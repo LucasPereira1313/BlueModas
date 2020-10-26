@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BlueModas.Dao
 {
@@ -12,7 +11,7 @@ namespace BlueModas.Dao
         {
             if (obj != null)
             {
-                Dao.Db.Carrinhos.Remove(obj);
+                Db.Carrinhos.Remove(obj);
                 return true;
             }
 
@@ -28,7 +27,7 @@ namespace BlueModas.Dao
             {
                 search = (string)guid;
 
-                dataout = (from Model.Carrinho x in Dao.Db.Carrinhos
+                dataout = (from Model.Carrinho x in Db.Carrinhos
                             where x.Guid.Equals(search, StringComparison.InvariantCultureIgnoreCase)
                             select x).FirstOrDefault();
             }
@@ -43,7 +42,7 @@ namespace BlueModas.Dao
                     Usuario = null,
                 };
 
-                Dao.Db.Carrinhos.Add(dataout);
+                Db.Carrinhos.Add(dataout);
             }
 
             return dataout;
@@ -51,17 +50,17 @@ namespace BlueModas.Dao
 
         public List<Model.Carrinho>GetList()
         {
-            return Dao.Db.Carrinhos;
+            return Db.Carrinhos;
         }
 
         public List<Model.Carrinho>GetList(object obj)
         {
-            return Dao.Db.Carrinhos;
+            return Db.Carrinhos;
         }
 
         public bool Save(Model.Carrinho obj)
         {
-            Model.Carrinho carrinho = Dao.Db.Carrinhos.FirstOrDefault(x => x.Guid.Equals(obj.Guid, StringComparison.InvariantCultureIgnoreCase));
+            Model.Carrinho carrinho = Db.Carrinhos.FirstOrDefault(x => x.Guid.Equals(obj.Guid, StringComparison.InvariantCultureIgnoreCase));
             if (carrinho != null)
             {
                 carrinho.Usuario = obj.Usuario;

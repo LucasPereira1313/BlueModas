@@ -9,12 +9,12 @@ namespace BlueModas.Dao
     {
         public bool Delete(Model.Usuario obj)
         {
-            Model.Usuario item = Dao.Db.Usuarios.FirstOrDefault(x => x.Equals(obj));
+            Model.Usuario item = Db.Usuarios.FirstOrDefault(x => x.Equals(obj));
             if (item != null)
             {
-                lock (Dao.Db.Usuarios)
+                lock (Db.Usuarios)
                 {
-                    Dao.Db.Usuarios.Remove(item);
+                    Db.Usuarios.Remove(item);
                 }
                 
                 return true;
@@ -28,7 +28,7 @@ namespace BlueModas.Dao
             {
                 int search = (int)id;
 
-                return (from Model.Usuario x in Dao.Db.Usuarios
+                return (from Model.Usuario x in Db.Usuarios
                         where x.Id.Equals(search)
                         select x).FirstOrDefault();
             }
@@ -37,7 +37,7 @@ namespace BlueModas.Dao
             {
                 string search = (string)id;
 
-                return (from Model.Usuario x in Dao.Db.Usuarios
+                return (from Model.Usuario x in Db.Usuarios
                         where x.Nome.Equals(search, StringComparison.InvariantCultureIgnoreCase)
                         select x).FirstOrDefault();
             }
@@ -47,7 +47,7 @@ namespace BlueModas.Dao
 
         public List<Model.Usuario>GetList()
         {
-            return Dao.Db.Usuarios;
+            return Db.Usuarios;
         }
 
         public List<Model.Usuario> GetList(object obj)
@@ -58,29 +58,29 @@ namespace BlueModas.Dao
                 {
                     string nome = (string)obj;
 
-                    return (from Model.Usuario x in Dao.Db.Usuarios
+                    return (from Model.Usuario x in Db.Usuarios
                             where x.Nome.Contains(nome)
                             select x).ToList();
                 }
             }
 
-            return Dao.Db.Usuarios;
+            return Db.Usuarios;
         }
 
         public bool Save(Model.Usuario obj)
         {
             if (!String.IsNullOrWhiteSpace(obj.Nome))
             {
-                obj.Id = Dao.Db.Usuarios.Count;
+                obj.Id = Db.Usuarios.Count;
 
                 if (obj.Historico == null)
                 {
                     obj.Historico = new List<Model.Carrinho>();
                 }
 
-                lock (Dao.Db.Usuarios)
+                lock (Db.Usuarios)
                 {
-                    Dao.Db.Usuarios.Add(obj);                    
+                    Db.Usuarios.Add(obj);                    
                 }
 
                 return true;

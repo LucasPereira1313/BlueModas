@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BlueModas.Dao
 {
@@ -12,23 +9,23 @@ namespace BlueModas.Dao
         internal static List<Model.Produto> ProdutoDisponivel;
         internal static void LoadAll()
         {
-            if (BlueModas.Dao.Db.Carrinhos == null)
+            if (Carrinhos == null)
             {
-                BlueModas.Dao.Db.Carrinhos = new List<Model.Carrinho>();
+                Carrinhos = new List<Model.Carrinho>();
             }
 
-            if (BlueModas.Dao.Db.Usuarios == null)
+            if (Usuarios == null)
             {
-                BlueModas.Dao.Db.Usuarios = new List<Model.Usuario>();
+                Usuarios = new List<Model.Usuario>();
             }
 
-            if (BlueModas.Dao.Db.ProdutoDisponivel == null)
+            if (ProdutoDisponivel == null)
             {
-                BlueModas.Dao.Db.ProdutoDisponivel = new List<Model.Produto>();
+                ProdutoDisponivel = new List<Model.Produto>();
 
-                BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
+                ProdutoDisponivel.Add(new Model.Produto()
                 {
-                    Id = Dao.Db.ProdutoDisponivel.Count,
+                    Id = ProdutoDisponivel.Count,
                     Cetegoria = new Model.Categoria()
                     {
                         Id = 1,
@@ -41,9 +38,9 @@ namespace BlueModas.Dao
                     Desconto = 0M,
                 });
 
-                BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
+                ProdutoDisponivel.Add(new Model.Produto()
                 {
-                    Id = Dao.Db.ProdutoDisponivel.Count,
+                    Id = ProdutoDisponivel.Count,
                     Cetegoria = new Model.Categoria()
                     {
                         Id = 1,
@@ -56,9 +53,9 @@ namespace BlueModas.Dao
                     Desconto = 0M,
                 });
 
-                BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
+                ProdutoDisponivel.Add(new Model.Produto()
                 {
-                    Id = Dao.Db.ProdutoDisponivel.Count,
+                    Id = ProdutoDisponivel.Count,
                     Cetegoria = new Model.Categoria()
                     {
                         Id = 1,
@@ -71,9 +68,9 @@ namespace BlueModas.Dao
                     Desconto = 0M,
                 });
 
-                BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
+                ProdutoDisponivel.Add(new Model.Produto()
                 {
-                    Id = Dao.Db.ProdutoDisponivel.Count,
+                    Id = ProdutoDisponivel.Count,
                     Cetegoria = new Model.Categoria()
                     {
                         Id = 1,
@@ -86,9 +83,9 @@ namespace BlueModas.Dao
                     Desconto = 0M,
                 });
 
-                BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
+                ProdutoDisponivel.Add(new Model.Produto()
                 {
-                    Id = Dao.Db.ProdutoDisponivel.Count,
+                    Id = ProdutoDisponivel.Count,
                     Cetegoria = new Model.Categoria()
                     {
                         Id = 2,
@@ -101,9 +98,9 @@ namespace BlueModas.Dao
                     Desconto = 0M,
                 });
 
-                BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
+                ProdutoDisponivel.Add(new Model.Produto()
                 {
-                    Id = Dao.Db.ProdutoDisponivel.Count,
+                    Id = ProdutoDisponivel.Count,
                     Cetegoria = new Model.Categoria()
                     {
                         Id = 2,

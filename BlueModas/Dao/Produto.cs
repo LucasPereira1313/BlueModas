@@ -6,7 +6,7 @@ namespace BlueModas.Dao
 {
     internal class Produto : IPresist<Model.Produto>
     {
-        List<Model.Produto> listaprodutos = null;
+        readonly List<Model.Produto> listaprodutos = null;
 
         public Produto(List<Model.Produto> itens)
         {
@@ -15,7 +15,7 @@ namespace BlueModas.Dao
 
         public Produto()
         {
-            this.listaprodutos = Dao.Db.ProdutoDisponivel;
+            this.listaprodutos = Db.ProdutoDisponivel;
         }
 
         public bool Delete(Model.Produto obj)

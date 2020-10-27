@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using  Microsoft.AspNetCore.Mvc;
 
-namespace BlueModas.Controllers
+namespace  BlueModas.Controllers
 {
-    public class HomeController : Controller
-    {
-        public IActionResult Index()
+        public  class  HomeController  :  Controller
         {
-            return View();
-        }
+                public  IActionResult  Index()
+                {
+                        return  View();
+                }
 
-        public IActionResult Shopping()
-        {
-            return View();
+                public  IActionResult  Shopping()
+                {
+                        return  View();
+                }
         }
-    }
 }

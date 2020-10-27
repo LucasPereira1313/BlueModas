@@ -1,89 +1,88 @@
-﻿using BlueModas.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using  BlueModas.Interface;
+using  System;
+using  System.Collections.Generic;
+using  System.Linq;
 
-namespace BlueModas.Dao
+namespace  BlueModas.Dao
 {
-    public class Carrinho : IPresist<Model.Carrinho>
-    {
-        public bool Delete(Model.Carrinho obj)
+        public  class  Carrinho  :  IPresist<Model.Carrinho>
         {
-            if (obj != null)
-            {
-                Dao.Db.Carrinhos.Remove(obj);
-                return true;
-            }
-
-            return false;
-        }
-
-        public Model.Carrinho Get(object guid)
-        {
-            Model.Carrinho dataout = null;
-            string search = Guid.NewGuid().ToString();
-
-            if (guid.GetType().Equals(typeof(string)))
-            {
-                search = (string)guid;
-
-                dataout = (from Model.Carrinho x in Dao.Db.Carrinhos
-                            where x.Guid.Equals(search, StringComparison.InvariantCultureIgnoreCase)
-                            select x).FirstOrDefault();
-            }
-
-            if (dataout == null)
-            {
-                dataout = new Model.Carrinho()
+                public  bool  Delete(Model.Carrinho  obj)
                 {
-                    Guid = search,
-                    DataHora = DateTime.Now,
-                    Produtos = new List<Model.Produto>(),
-                    Usuario = null,
-                };
+                        if  (obj  !=  null)
+                        {
+                                Db.Carrinhos.Remove(obj);
+                                return  true;
+                        }
 
-                Dao.Db.Carrinhos.Add(dataout);
-            }
+                        return  false;
+                }
 
-            return dataout;
-        }
-
-        public List<Model.Carrinho>GetList()
-        {
-            return Dao.Db.Carrinhos;
-        }
-
-        public List<Model.Carrinho>GetList(object obj)
-        {
-            return Dao.Db.Carrinhos;
-        }
-
-        public bool Save(Model.Carrinho obj)
-        {
-            Model.Carrinho carrinho = Dao.Db.Carrinhos.FirstOrDefault(x => x.Guid.Equals(obj.Guid, StringComparison.InvariantCultureIgnoreCase));
-            if (carrinho != null)
-            {
-                carrinho.Usuario = obj.Usuario;
-                carrinho.Produtos = obj.Produtos;
-                return true;
-            }
-
-            return false;
-        }
-
-        public void AddProduto(object guid,
-                               Model.Produto obj)
-        {
-            if (obj != null)
-            {
-                Model.Carrinho car = this.Get(guid);
-                if (car != null)
+                public  Model.Carrinho  Get(object  guid)
                 {
-                    Produto prod = new Produto(car.Produtos);
-                    prod.Save(obj);
-                }                
-            }
+                        Model.Carrinho  dataout  =  null;
+                        string  search  =  Guid.NewGuid().ToString();
+
+                        if  (guid.GetType().Equals(typeof(string)))
+                        {
+                                search  =  (string)guid;
+
+                                dataout  =  (from  Model.Carrinho  x  in  Db.Carrinhos
+                                                        where  x.Guid.Equals(search,  StringComparison.InvariantCultureIgnoreCase)
+                                                        select  x).FirstOrDefault();
+                        }
+
+                        if  (dataout  ==  null)
+                        {
+                                dataout  =  new  Model.Carrinho()
+                                {
+                                        Guid  =  search,
+                                        DataHora  =  DateTime.Now,
+                                        Produtos  =  new  List<Model.Produto>(),
+                                        Usuario  =  null,
+                                };
+
+                                Db.Carrinhos.Add(dataout);
+                        }
+
+                        return  dataout;
+                }
+
+                public  List<Model.Carrinho>GetList()
+                {
+                        return  Db.Carrinhos;
+                }
+
+                public  List<Model.Carrinho>GetList(object  obj)
+                {
+                        return  Db.Carrinhos;
+                }
+
+                public  bool  Save(Model.Carrinho  obj)
+                {
+                        Model.Carrinho  carrinho  =  Db.Carrinhos.FirstOrDefault(x  =>  x.Guid.Equals(obj.Guid,  StringComparison.InvariantCultureIgnoreCase));
+                        if  (carrinho  !=  null)
+                        {
+                                carrinho.Usuario  =  obj.Usuario;
+                                carrinho.Produtos  =  obj.Produtos;
+                                return  true;
+                        }
+
+                        return  false;
+                }
+
+                public  void  AddProduto(object  guid,
+                                                              Model.Produto  obj)
+                {
+                        if  (obj  !=  null)
+                        {
+                                Model.Carrinho  car  =  this.Get(guid);
+                                if  (car  !=  null)
+                                {
+                                        Produto  prod  =  new  Produto(car.Produtos);
+                                        prod.Save(obj);
+                                }                                
+                        }
+                }
         }
-    }
 }

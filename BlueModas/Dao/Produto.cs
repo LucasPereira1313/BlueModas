@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BlueModas.Dao
 {
-    internal class Produto : IPresist<Model.Produto>
+    internal class Produto : IPersist<Model.Produto>
     {
         List<Model.Produto> listaprodutos = null;
 
@@ -59,7 +59,7 @@ namespace BlueModas.Dao
                 Model.Categoria categoria = (Model.Categoria)obj;
 
                 return (from Model.Produto x in this.listaprodutos
-                        where x.Cetegoria.Id.Equals(categoria.Id)
+                        where x.Categoria.Id.Equals(categoria.Id)
                         select x).ToList();
             }
 

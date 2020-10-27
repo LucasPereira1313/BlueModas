@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "User";
+}
+
+@section header{
+
+}
+
+<div class="form-group">
+    <label for="exampleInputEmail1">Nome</label>
+    <input type="email" class="form-control" id="usuario_nome" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">Entre com o nome do usuário.</small>
+</div>
+<div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="usuario_password">
+</div>
+<button type="submit" class="btn btn-primary">Gravar</button>
+
+
+@section Scripts {
+    <script src="~/js/toos.js"></script>
+
+    <script>
+        window.onload = function () {
+
+        };
+    </script>
+}

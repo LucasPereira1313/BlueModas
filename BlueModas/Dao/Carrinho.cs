@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlueModas.Dao
 {
-    public class Carrinho : IPresist<Model.Carrinho>
+    public class Carrinho : IPersist<Model.Carrinho>
     {
         public bool Delete(Model.Carrinho obj)
         {

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace BlueModas.Dao
 {
-    internal class Usuario : IPresist<Model.Usuario>
+    internal class Usuario : IPersist<Model.Usuario>
     {
         public bool Delete(Model.Usuario obj)
         {

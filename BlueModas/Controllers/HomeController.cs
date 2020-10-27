@@ -17,5 +17,10 @@ namespace BlueModas.Controllers
         {
             return View();
         }
+
+        public IActionResult User()
+        {
+            return View();
+        }
     }
 }

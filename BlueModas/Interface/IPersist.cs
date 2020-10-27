@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BlueModas.Interface
 {
-    public interface IPresist<T>
+    public interface IPersist<T>
     {
         bool Save(T obj);
         bool Delete(T obj);

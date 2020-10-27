@@ -29,7 +29,7 @@ namespace BlueModas.Dao
                 BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
                 {
                     Id = Dao.Db.ProdutoDisponivel.Count,
-                    Cetegoria = new Model.Categoria()
+                    Categoria = new Model.Categoria()
                     {
                         Id = 1,
                         Descricao = "Unissex",
@@ -44,7 +44,7 @@ namespace BlueModas.Dao
                 BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
                 {
                     Id = Dao.Db.ProdutoDisponivel.Count,
-                    Cetegoria = new Model.Categoria()
+                    Categoria = new Model.Categoria()
                     {
                         Id = 1,
                         Descricao = "Unissex",
@@ -59,7 +59,7 @@ namespace BlueModas.Dao
                 BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
                 {
                     Id = Dao.Db.ProdutoDisponivel.Count,
-                    Cetegoria = new Model.Categoria()
+                    Categoria = new Model.Categoria()
                     {
                         Id = 1,
                         Descricao = "Unissex",
@@ -74,7 +74,7 @@ namespace BlueModas.Dao
                 BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
                 {
                     Id = Dao.Db.ProdutoDisponivel.Count,
-                    Cetegoria = new Model.Categoria()
+                    Categoria = new Model.Categoria()
                     {
                         Id = 1,
                         Descricao = "Unissex",
@@ -89,7 +89,7 @@ namespace BlueModas.Dao
                 BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
                 {
                     Id = Dao.Db.ProdutoDisponivel.Count,
-                    Cetegoria = new Model.Categoria()
+                    Categoria = new Model.Categoria()
                     {
                         Id = 2,
                         Descricao = "Feminino",
@@ -104,7 +104,7 @@ namespace BlueModas.Dao
                 BlueModas.Dao.Db.ProdutoDisponivel.Add(new Model.Produto()
                 {
                     Id = Dao.Db.ProdutoDisponivel.Count,
-                    Cetegoria = new Model.Categoria()
+                    Categoria = new Model.Categoria()
                     {
                         Id = 2,
                         Descricao = "Feminino",

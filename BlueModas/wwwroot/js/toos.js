@@ -156,9 +156,10 @@ function showQtdProduto(qtd) {
     }
 }
 
+//Add products on car
 function addProdutoCarrinho(id) {
     let data = {
-        methodo: 'PUT',
+        methodo: 'POST',
         url: '/api/Carrinho/AddProduto' + '?guid=' + identfyUser() + '&produto=' + String(id),
         datajson: null,
         returnmessage: false,
@@ -279,6 +280,22 @@ function loadHome(data) {
 }
 
 
+function getShopping() {
+    let data = {
+        methodo: 'GET',
+        url: '/api/Carrinho/GetShopping' + '?guid=' + identfyUser(),
+        datajson: null,
+        returnmessage: false,
+        command: function (response) {
+            loadShopping(response);
+        },
+    };
+
+    sendToApi(data)
+}
+
+
+//Load list of product on car
 function loadShopping(data) {
 
     if (data != null) {
@@ -288,34 +305,46 @@ function loadShopping(data) {
         if (content != null) {
 
             content.innerHTML = '';
+            let subtotal = 0;
 
             if (data != null) {
+
+                let element_h6 = document.createElement("h6");
+                element_h6.className = 'border-bottom border-gray pb-2 mb-0';
+                element_h6.innerText = 'Itens do carrinho';
 
                 for (var i = 0; i < data.length; i++) {
 
                     let iten = data[i];
-                    let id = iten['id'];
-                    let descricao = iten['descricao'];
-                    let observacao = iten['observacao'];
-                    let categoria = iten['categoria'];
-                    let image = iten['imageBase64'];
-                    let valor = iten['valor'];
-                    let desconto = iten['desconto'];
-                    let currency_valor = valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+                    let contagem = iten['contagem'];
+                    let valortotal = iten['valorTotal'];
+                    let produto = iten['produto'];
+
+                    let image = produto['imageBase64'];
+                    let valor = produto['valor'];
+                    let descricao = produto['descricao'];
+
+
+                    subtotal = subtotal + valortotal;
+
+                    let currency_valorunitario = valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+                    let currency_valortotak = valortotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });                    
 
 
                     let element_i = document.createElement("button");
                     element_i.type = 'button';
                     element_i.className = 'btn btn-primary btn-sm btn-block';
-                    element_i.onclick = function () { addProdutoCarrinho(id); };
                     element_i.innerHTML = '<svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-cart4 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" /></svg>Adicionar';
 
 
                     let element_h = document.createElement("label");
-                    element_h.innerText = 'fffffffffffffffffff'
+                    element_h.innerText = 'Total ' + String(currency_valortotak);
+
 
                     let element_g = document.createElement("strong");
                     element_g.className = 'text-gray-dark';
+                    element_g.innerText = 'Valor unitário ' + String(currency_valorunitario); 
+
 
                     let element_f = document.createElement("div");
                     element_f.className = 'd-flex justify-content-between align-items-center w-100';
@@ -325,39 +354,40 @@ function loadShopping(data) {
 
                     let element_e = document.createElement("span");
                     element_e.className = 'd-block';
-                    element_e.innerText = 'ffffffffffffffff'
+                    element_e.innerText = String(contagem) + 'x - ' + String(descricao);
+
 
                     let element_d = document.createElement("div");
                     element_d.className = 'media-body pb-3 mb-0 small lh-125 border-bottom border-gray';
                     element_d.appendChild(element_f);
                     element_d.appendChild(element_e);
+                                                           
 
-                    let element_c = document.createElement("img");
-                    element_c.className = 'img-fluid';
-                    element_c.src = image;
+                    let element_image = document.createElement("img");
+                    element_image.className = 'bd-placeholder-img mr-2 rounded';
+                    element_image.src = image;
+                    element_image.style = 'height: 50px; width: auto;';
 
-                    let element_b = document.createElement("div");
-                    element_b.className = '"media text-muted pt-3';
-                    element_b.appendChild(element_c);
-                    element_b.appendChild(element_d);
-
-                    let element_h6 = document.createElement("h6");
-                    element_h6.className = 'border-bottom border-gray pb-2 mb-0';
-                    element_h6.innerText = 'Itens do carrinho';
-
-                    let element_small = document.createElement("h6");
-                    element_small.className = 'd-block text-right mt-3';
-                    element_small.innerText = 'Total R$ 3333';
 
                     let element_a = document.createElement("div");
                     element_a.className = 'media text-muted pt-3';
-                    element_a.appendChild(element_h6);
-                    element_a.appendChild(element_b);
-                    element_a.appendChild(element_small);
+                    element_a.appendChild(element_image);
+                    element_a.appendChild(element_d);
 
-                    content.appendChild(element_a);
+                    content.appendChild(element_a);                    
 
                 }
+
+                let currency_valorsubtotal = subtotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+
+                let element_small = document.createElement("h6");
+                element_small.className = 'd-block text-right mt-3';
+                element_small.innerText = 'Total a pagar ' + String(currency_valorsubtotal);
+
+                content.appendChild(element_small);
+
+                
+
             }
         }
     }
